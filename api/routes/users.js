@@ -1,32 +1,34 @@
-const User = require('../../models').User;
+const UserService = require('../../services/user-service');
 const route = require('express').Router();
 
 const userValidationRules = require('../middlewares/validations/user-validator');
 const validate = require('../middlewares/validator');
 
-const bcrypt = require('bcrypt');
+route.get(
+  '/',
+  async (req, res, next) => {    
+    try {
+      const { users } = await UserService.getAll();
+      return res.json(users).status(200);
+    } catch (e) {
+      return next(e);
+    }
+  }
+);
 
-route.get('/', (req, res) => {
-  User.findAll()
-    .then(users => {
-      console.log(users);
-      res.json(users).status(200);
-    })
-    .catch(err => {
-      console.log("Error: " + err);
-      res.sendStatus(500);
-    });
-});
-
-route.post('/store', userValidationRules(), validate, async (req, res) => {
-  const userDTO = req.body;
-
-  const user = User.build(userDTO);
-
-  user.password = await bcrypt.hash(user.password, 10);
-  await user.save();
-
-  res.json(user.toJSON());
-})
+route.post(
+  '/signup',
+  userValidationRules(),
+  validate,
+  async (req, res, next) => {
+    try {
+      const userDTO = req.body;
+      const { user } = await UserService.signUp(userDTO);
+      return res.json(user).status(201);
+    } catch(e) {
+      return next(e);
+    }
+  }
+);
 
 module.exports = route;
