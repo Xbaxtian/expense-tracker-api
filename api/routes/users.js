@@ -2,7 +2,10 @@ const UserService = require('../../services/user-service');
 const route = require('express').Router();
 
 const userValidationRules = require('../middlewares/validations/user-validator');
+const loginValidationRules = require('../middlewares/validations/login-validator');
 const validate = require('../middlewares/validator');
+
+const passport = require('../middlewares/passport');
 
 route.get(
   '/',
@@ -28,6 +31,18 @@ route.post(
     } catch(e) {
       return next(e);
     }
+  }
+);
+
+route.post(
+  '/login',
+  loginValidationRules(),
+  validate,
+  passport.initialize(),
+  passport.authenticate('local'),
+  (req, res, next) => {
+    console.log('hola');
+    res.json();
   }
 );
 

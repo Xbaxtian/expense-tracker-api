@@ -1,6 +1,14 @@
 'use strict';
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  class User extends sequelize.Sequelize.Model {
+    async validPassword(password) {
+      return await bcrypt(password, this.password)
+    };
+  }
+
+  User.init({
     name: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -9,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.FLOAT
     }
-  }, {});
+  }, { sequelize });
+
   User.associate = function(models) {
     // associations can be defined here
   };
