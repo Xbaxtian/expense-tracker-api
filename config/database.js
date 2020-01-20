@@ -9,7 +9,7 @@ if (config.dialect === "sqlite") {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-if (env !== 'production') {
+if (env === 'development') {
   sequelize.sync();
 }
 
