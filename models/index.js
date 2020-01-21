@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);
 
-const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
 const db = {};
@@ -24,8 +23,5 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;
