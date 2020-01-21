@@ -16,7 +16,7 @@ it('shoud create a user', async () => {
       .send({
         "name": "Sebastian",
         "lastname": "Postigo",
-        "email": "xbaxtian@hotmail.com",
+        "email": `test@test.com`,
         "password": "secret",
         "password_confirm": "secret"
       });
@@ -26,9 +26,9 @@ it('shoud create a user', async () => {
 
 it('should authenticate a user', async () =>{
     const res = await request(app)
-      .post('/user/login')
+      .post('/users/login')
       .send({
-        "email": "xbaxtian@hotmail.com",
+        "email": "test@test.com",
         "password": "secret",
       });
 

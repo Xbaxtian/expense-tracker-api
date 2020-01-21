@@ -1,7 +1,9 @@
   
 const express = require('express');
+const session = require('express-session');
 const server = express();
 
+server.use(session({ secret: "secret" }));
 server.use(express.json());
 
 server.get('/', (req, res) => {

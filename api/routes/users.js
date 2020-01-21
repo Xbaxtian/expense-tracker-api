@@ -12,7 +12,7 @@ route.get(
   async (req, res, next) => {    
     try {
       const { users } = await UserService.getAll();
-      return res.json(users).status(200);
+      return res.json(users);
     } catch (e) {
       return next(e);
     }
@@ -27,22 +27,41 @@ route.post(
     try {
       const userDTO = req.body;
       const { user } = await UserService.signUp(userDTO);
-      return res.json(user).status(201);
+      return res.status(201).json(user);
     } catch(e) {
       return next(e);
     }
   }
 );
 
+route.use(
+  passport.initialize(),
+  passport.session()
+);
+
 route.post(
   '/login',
   loginValidationRules(),
   validate,
-  passport.initialize(),
   passport.authenticate('local'),
-  (req, res, next) => {
-    console.log('hola');
-    res.json();
+  (req, res) => {
+    res.json(req.user);
+  }
+);
+
+route.get(
+  '/logout',
+  (req, res) => {
+    req.logout();
+    res.json({message: 'success'});
+  }
+);
+
+route.get(
+  '/:id',
+  require('../middlewares/check-authentication'),
+  (req, res) => {
+    res.json(req.user);
   }
 );
 
