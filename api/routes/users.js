@@ -38,11 +38,6 @@ module.exports = (app) => {
     }
   );
 
-  route.use(
-    passport.initialize(),
-    passport.session()
-  );
-
   route.post(
     '/login',
     loginValidationRules(),
