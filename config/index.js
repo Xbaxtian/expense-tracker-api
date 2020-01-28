@@ -10,13 +10,7 @@ if (!envFound) {
   throw new Error("⚠️  Couldn't find .env file  ⚠️");
 }
 
-module.exports = {
-  port: parseInt(process.env.PORT, 10),
-
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT,
-  storage: process.env.DB_SQLITE_STORAGE,
-};
+export default {
+    port: parseInt(process.env.PORT, 10),
+    mongoUrl: process.env.MONGO_URL
+}

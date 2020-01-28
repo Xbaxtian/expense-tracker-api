@@ -1,14 +1,8 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define('Category', {
-    name: DataTypes.STRING,
-    color: DataTypes.STRING,
-    icon: DataTypes.STRING
-  }, {});
-  Category.associate = function (models) {
-    Category.hasMany(models.Expense, {
-      foreignKey: 'categoryId'
-    });
-  };
-  return Category;
-};
+import mongoose, { Schema } from 'mongoose';
+
+const categorySchema = mongoose.Schema({
+    name: String,
+    color: String
+});
+
+export default mongoose.model('Category', categorySchema);

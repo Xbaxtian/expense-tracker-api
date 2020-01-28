@@ -1,15 +1,8 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Account = sequelize.define('Account', {
-    name: DataTypes.STRING,
-  }, {});
-  Account.associate = function(models) {
-    Account.belongsTo(models.User, {
-      foreignKey: 'userId'
-    });
-    Account.hasMany(models.Expense, {
-      foreignKey: 'accountId'
-    });
-  };
-  return Account;
-};
+import mongoose, { Schema } from 'mongoose';
+
+const accountSchema = mongoose.Schema({
+    name: String,
+    user: { type: Schema.Types.ObjectId, ref:'User', required: true },
+});
+
+export default mongoose.model('Account', accountSchema);

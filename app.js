@@ -1,28 +1,26 @@
-const express = require('express');
+import express from 'express';
+import routes from './routes';
+import config from './config';
+import cors from 'cors';
+import mongoose from 'mongoose';
 
-const loader = require('./loaders');
+const app = express();
 
-const config = require('./config');
-
-async function startServer() {
-  const app = express();
-
-  await loader({ expressApp: app });
-
-  // app.use('/users', require('./api/routes/users'));
-
-  app.listen(config.port, err => {
-    if (err) {
-      console.log(err);
-      process.exit(1);
-      return;
+mongoose.connect(
+    config.mongoUrl,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     }
-    console.log(`
-      ################################################
-      🛡️  Server listening on port: ${config.port} 🛡️ 
-      ################################################
-    `);
-  });
-}
+)
 
-startServer();
+app.use(cors());
+app.use(express.json());
+
+app.post('/', (req, res) => {
+    res.json(req.body);
+})
+
+app.use('/', routes())
+
+app.listen(config.port);

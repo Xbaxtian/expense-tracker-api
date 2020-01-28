@@ -1,16 +1,11 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Expense = sequelize.define('Expense', {
-    description: DataTypes.TEXT,
-    amount: DataTypes.FLOAT
-  }, {});
-  Expense.associate = function(models) {
-    Expense.belongsTo(models.Account, {
-      foreignKey: 'accountId'
-    });
-    Expense.belongsTo(models.Category, {
-      foreignKey: 'categoryId'
-    });
-  };
-  return Expense;
-};
+import mongoose, { Schema } from 'mongoose';
+
+const expenseSchema = mongoose.Schema({
+    description: { type: String, required: true },
+    amount: { type: Number, required: true, default: 0 },
+    created_at: { type: Date, required: true, default: Date.now() },
+    account: { type: Schema.Types.ObjectId, ref:'Account', required: true },
+    category: { type: Schema.Types.ObjectId, ref:'Category', required: true }
+});
+
+export default mongoose.model('Expense', expenseSchema);

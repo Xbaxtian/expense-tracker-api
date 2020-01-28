@@ -1,41 +1,33 @@
 {
-  "name": "express-demo",
-  "version": "1.0.0",
-  "description": "express hello word",
+  "name": "expense-tracker-api",
+  "version": "2.0.0",
+  "description": "Expense tracker api",
   "main": "app.js",
   "scripts": {
-    "dev": "npx nodemon app.js",
-    "migrate": "npx sequelize-cli db:migrate",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
-    "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
+    "dev": "nodemon --exec babel-node app.js",
+    "test": "test"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xbaxtian/expense-tracker-api.git"
+  },
+  "author": "Xbaxtian",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xbaxtian/expense-tracker-api/issues"
+  },
+  "homepage": "https://github.com/Xbaxtian/expense-tracker-api#readme",
   "dependencies": {
-    "bcrypt": "^3.0.7",
-    "bottlejs": "^1.7.2",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "express-validator": "^6.3.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.21.3",
-    "sqlite3": "^4.1.1"
+    "md5": "^2.2.1",
+    "mongoose": "^5.8.10"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3",
-    "jest": "^24.9.0",
-    "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1",
-    "supertest": "^4.0.2"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "nodemon": "^2.0.2"
   }
 }
