@@ -12,5 +12,6 @@ if (!envFound) {
 
 export default {
     port: parseInt(process.env.PORT, 10),
-    mongoUrl: process.env.MONGO_URL
+    mongoUrl: process.env.MONGO_URL,
+    appKey: process.env.APP_KEY,
 }

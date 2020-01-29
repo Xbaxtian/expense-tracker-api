@@ -21,8 +21,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "md5": "^2.2.1",
-    "mongoose": "^5.8.10"
+    "mongoose": "^5.8.10",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
