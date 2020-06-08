@@ -1,15 +1,12 @@
-import mongoose from 'mongoose';
-import config from '../config';
+import mongoose from "mongoose";
+import config from "../config";
 
 export default async () => {
-    const connection = await mongoose.connect(
-        config.mongoUrl,
-        {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            useUnifiedTopology: true
-        }
-    )
+  const connection = await mongoose.connect(config.mongoUrl, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  });
 
-    return connection.connection.db;
-}
+  return connection.connection.db;
+};
