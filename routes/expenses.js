@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import ExpenseService from '../services/ExpenseService';
-import Expense from '../models/expense';
+import Expense from '../models/Expense';
 const expenseServiceInstance = new ExpenseService(Expense);
 
 export default (app) => {

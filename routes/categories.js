@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
-import CategoryService from '../services/categoryService';
-import Category from '../models/category';
+import CategoryService from '../services/CategoryService';
+import Category from '../models/Category';
 const categoryServiceInstance = new CategoryService(Category);
 
 export default (app) => {

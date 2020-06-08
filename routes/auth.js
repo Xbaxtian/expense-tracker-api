@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import AuthService from '../services/AuthService';
-import User from '../models/user';
+import User from '../models/User';
 
 import passport from 'passport';
 

@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import AuthService from '../services/AuthService';
 import UserService from '../services/UserService';
-import User from '../models/user';
+import User from '../models/User';
 
 const authServiceInstance = new AuthService(User);
 const userServiceInstance = new UserService(User);
